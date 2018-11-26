@@ -5,6 +5,7 @@ var mongoose = require('mongoose'), Schema = mongoose.Schema;
 var db = mongoose.connection;
 
 mongoose.connect('mongodb://localhost/test');
+//mongoose.connect('mongodb://<topicosmaster>:<senha1234>@ds111082.mlab.com:11082/topicos');
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {});
 

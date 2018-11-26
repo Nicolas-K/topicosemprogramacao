@@ -6,19 +6,20 @@ var Schema = mongoose.Schema;
 var db = mongoose.connection;
 
 mongoose.connect('mongodb://localhost/test');
+//mongoose.connect('mongodb://<topicosmaster>:<senha1234>@ds111082.mlab.com:11082/topicos');
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {});
 
-var eventSchema = new mongoose.Schema({
-  name: {type: String, unique: true, required: true},
-  startDate: Date,  
-  endDate: Date,
-  place: String,
-  description: String,
-  attractions: String,
-  area: String,
-  price: Number
-});
+	var eventSchema = new mongoose.Schema({
+	  name: {type: String, unique: true, required: true},
+	  startDate: Date,  
+	  endDate: Date,
+	  place: String,
+	  description: String,
+	  attractions: String,
+	  area: String,
+	  price: Number
+	});
 
 var Event = mongoose.model('Event', eventSchema);
 module.exports = mongoose.model('Event', eventSchema);
