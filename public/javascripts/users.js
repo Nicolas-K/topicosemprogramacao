@@ -116,7 +116,12 @@ function exibeNomeUsuario(emailhtml) {
 
                     if (emailhtml === user.email) {
 
-                        document.getElementById('fullName').innerHTML == user.name;
+                        document.getElementById('fullName').value = user.name;
+                        document.getElementById('birthDate').value = user.birth;
+                        document.getElementById('password').value = user.password;
+                        document.getElementById('email').value = user.email;
+                        document.getElementById('nivelEscolaridade').value = user.education;
+                        document.getElementById('interests').value = user.interest;
                         //                    location.reload();
                     }
                 }
