@@ -187,7 +187,7 @@ router.put('/subscribe/:_id', function(req, res){
   })
 });
 
-/*
+/* Ainda tenho que arrumar essa parte
 router.put('/unsubscribe/:_id', function(req, res){
 
   var eventSchema = mongoose.Schema({
@@ -246,4 +246,5 @@ router.put('/unsubscribe/:_id', function(req, res){
   })
 });
 */
+
 module.exports = router;

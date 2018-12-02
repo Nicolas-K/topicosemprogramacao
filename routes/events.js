@@ -9,7 +9,8 @@ mongoose.connect('mongodb://topicosmaster:senha1234@ds111082.mlab.com:11082/topi
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {});
 
-	var eventSchema = mongoose.Schema({
+
+ 	var eventSchema = mongoose.Schema({
 	  name: {type: String, unique: true, required: true},
 	  startDate: Date,  
 	  endDate: Date,
@@ -96,7 +97,6 @@ router.post('/detailByID', function(req, res, next){
                 res.status(200).json(searchEvent);
               })
 });
-
 
   router.put('/update/:id', function(req, res){
     var id = req.params.id;
