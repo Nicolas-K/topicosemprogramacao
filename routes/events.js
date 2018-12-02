@@ -9,7 +9,8 @@ mongoose.connect('mongodb://topicosmaster:senha1234@ds111082.mlab.com:11082/topi
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {});
 
-	var eventSchema = new mongoose.Schema({
+
+ 	var eventSchema = mongoose.Schema({
 	  name: {type: String, unique: true, required: true},
 	  startDate: Date,  
 	  endDate: Date,
@@ -68,19 +69,34 @@ router.get('/showAll', function(req, res, next){
 });
 
 router.post('/detailByName', function(req, res, next){
-    var name = req.body.name;
-    Event.findOne({'name': name},
-                function(err, searchEvent){
-                  if(err){
-                    console.log(err);
-                    return res.status(500).send();
-                  }
-                  if(!searchEvent){
-                    return res.status(404).send();
-                  }
-                  res.status(200).json(searchEvent);
-                })
-  });
+  var name = req.body.name;
+  Event.findOne({'name': name},
+              function(err, searchEvent){
+                if(err){
+                  console.log(err);
+                  return res.status(500).send();
+                }
+                if(!searchEvent){
+                  return res.status(404).send();
+                }
+                res.status(200).json(searchEvent);
+              })
+});
+
+router.post('/detailByID', function(req, res, next){
+  var _id = req.body._id;
+  Event.findOne({'_id': _id},
+              function(err, searchEvent){
+                if(err){
+                  console.log(err);
+                  return res.status(500).send();
+                }
+                if(!searchEvent){
+                  return res.status(404).send();
+                }
+                res.status(200).json(searchEvent);
+              })
+});
 
   router.put('/update/:id', function(req, res){
     var id = req.params.id;
@@ -130,10 +146,15 @@ router.post('/detailByName', function(req, res, next){
   router.delete('/delete/:id', function(req, res){
     var id = req.params.id;
   
-    Event.findOneAndRemove({_id: id}, function(err){
+    Event.findOneAndRemove({_id: id}, function(err, searchEvent){
       if(err){
         return res.status(500).send();
       }
+
+      if(!searchEvent){
+        return res.status(404).send();
+      }
+
       return res.status(200).send();
     })
   });

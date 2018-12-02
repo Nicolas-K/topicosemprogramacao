@@ -8,8 +8,6 @@ mongoose.connect('mongodb://topicosmaster:senha1234@ds111082.mlab.com:11082/topi
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {});
 
-var Event = require('mongoose').model('Event').schema;
-
 var userSchema = new mongoose.Schema({
   name: {type: String, required: true},
   email: {type: String, unique: true, required: true},
@@ -17,7 +15,8 @@ var userSchema = new mongoose.Schema({
   birth: {type: Date, required: true},
   education: {type: String, required: true},
   interest: {type: String, required: true},
-  CPF_RG: String
+  CPF_RG: String,
+  subscriptions: [String]
 });
 
 var User = mongoose.model('User', userSchema);
@@ -126,18 +125,35 @@ router.put('/update/:email', function(req, res){
 router.delete('/delete/:email', function(req, res){
   var email = req.params.email;
 
-  User.findOneAndRemove({email: email}, function(err){
+  User.findOneAndRemove({email: email}, function(err, searchUser){
     if(err){
       return res.status(500).send();
     }
+
+    if(!searchUser){
+      return res.status(404).send();
+    }
+
     return res.status(200).send();
   })
 });
 
-router.put('/subscribe/:id', function(req, res){
-  var id = req.params.id;
+router.put('/subscribe/:_id', function(req, res){
+
+  var eventSchema = mongoose.Schema({
+	  name: {type: String, unique: true, required: true},
+	  startDate: Date,  
+	  endDate: Date,
+	  place: String,
+	  description: String,
+	  attractions: String,
+	  area: String,
+	  price: Number
+	});
+
+  var _id = req.params._id;
   var email = req.body.email;
-  var Evento = require('mongoose').model('Event').schema;
+  var Evento = require('mongoose').model('Event');
 
   User.findOne({email: email}, function(err, searchUser){
     if(err){
@@ -145,9 +161,13 @@ router.put('/subscribe/:id', function(req, res){
     }
       if(!searchUser){
         return res.status(404).send();
+      } 
+
+      if(searchUser.subscriptions = _id){
+        return res.status(409).send();
       }
 
-      Event.eventSchema.find({_id: id}, function(err, searchEvent){
+      Evento.findOne({_id: _id}, function(err, searchEvent){
         if(err){
           return res.status(500).send();
         }
@@ -155,7 +175,7 @@ router.put('/subscribe/:id', function(req, res){
           return res.status(404).send();
         }
         
-        searchUser.subscriptions.push(searchEvent);
+        searchUser.subscriptions.push(searchEvent._id);
        
         searchUser.save(function(err, savedUser){
           if(err){
@@ -166,5 +186,65 @@ router.put('/subscribe/:id', function(req, res){
       })
   })
 });
+
+/* Ainda tenho que arrumar essa parte
+router.put('/unsubscribe/:_id', function(req, res){
+
+  var eventSchema = mongoose.Schema({
+	  name: {type: String, unique: true, required: true},
+	  startDate: Date,  
+	  endDate: Date,
+	  place: String,
+	  description: String,
+	  attractions: String,
+	  area: String,
+	  price: Number
+	});
+
+  var _id = req.params._id;
+  var email = req.body.email;
+  var Evento = require('mongoose').model('Event');
+
+  User.findOne({email: email}, function(err, searchUser){
+    if(err){
+      return res.status(500).send();
+    }
+      if(!searchUser){
+        return res.status(404).send();
+      } 
+
+      if(searchUser.subscriptions != _id){
+        return res.status(404).send();
+      }
+
+      /* NÃO ESTÁ FUNCIONANDO. EU QUERO REMOVER DO ARRAY
+      userAccounts.update( 
+        { userId: usr.userId },
+        { $pull: { connections : { _id : connId } } },
+        { safe: true },
+        function removeConnectionsCB(err, obj) {
+            ...
+        });
+      *//*
+      Evento.findOne({_id: _id}, function(err, searchEvent){
+        if(err){
+          return res.status(500).send();
+        }
+        if(!searchEvent){
+          return res.status(404).send();
+        }
+        
+        searchUser.subscriptions.push(searchEvent._id);
+       
+        searchUser.save(function(err, savedUser){
+          if(err){
+            return res.status(500).send();
+          } 
+            return res.status(200).send();
+        })
+      })
+  })
+});
+*/
 
 module.exports = router;
