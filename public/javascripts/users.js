@@ -6,14 +6,12 @@ function exibeUsuarios() {
 
         error: function (call) {
             alert('Erro: ' + call.data);
-            document.getElementById('result').innerHTML += '<br>ACONTECEU 1<br>';
         },
 
         success: function (call) {
 
             if (call.status === 404 || call.status === 500) {
                 alert('Erro: ' + call.data);
-                document.getElementById('result').innerHTML += '<br>ACONTECEU 2<br>';
             }
 
             else {
