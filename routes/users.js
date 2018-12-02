@@ -63,7 +63,7 @@ router.post('/login', function(req, res){
                 if(!searchUser){
                   return res.status(404).send();
                 }
-                return res.status(200).send();
+                return res.status(200).json(searchUser).send();
               })
 });
 
