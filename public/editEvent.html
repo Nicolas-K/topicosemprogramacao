@@ -7,100 +7,96 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Editar Usuário</title>
+    <title>Editar Evento</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="form-validation.css" rel="stylesheet">
-
     <!-- Importando js da API -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="javascripts/users.js"></script>
+    <script src="javascripts/events.js"></script>
 
-
-    <!-- Inputmask API -->
-    <script type="text/javascript" src="inputmask.js"></script>
-    <script type="text/javascript" src="inputmask.min.js"></script>
-    <script type="text/javascript" src="jquery.inputmask.js"></script>
-    <script type="text/javascript" src="jquery.inputmask.min.js"></script>
-    <script src="bindings/inputmask.bindings.js"></script>
-
+    <!-- Custom styles for this template -->
+    <link href="form-validation.css" rel="stylesheet">
   </head>
 
   <body class="bg-light">
 
     <div class="container">
       <div class="py-5 text-center">
-        <h2>Editar seus dados</h2> <!-- Mudar a imagem, criar identidade visual do projeto-->
-        <p class="lead">Edite seus dados para que a equipe do EventsFull Inc. possa te auxiliar melhor com seus eventos. Quanto mais informações, mais fácil será de contatá-lo.</p>
+        <h2>Editar os dados do evento</h2>
+        <p class="lead">Edite os dados do evento, caso tenha ocorrido algum engano, ou para aprimorar a experiência dos participantes.</p>
       </div>
 
       <div class="row">
         <div class="col-12">
-          <h4 class="mb-3">Informações da conta</h4>
+          <h4 class="mb-3">Informações do Evento</h4>
           <form class="needs-validation" novalidate>
-              <div class="mb-3">
-                <label for="fullName">Nome Completo</label>
-                <input type="text" class="form-control" id="fullName" placeholder="Seu nome completo aqui." value="" required>
-                <div class="invalid-feedback">
-                  Escreva seu nome, é obrigatório.
-                </div>
-              </div>
-          
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="CPF">CPF</label>
-                <input type="text" class="form-control" id="cpf" placeholder="123.456.789-00" value="" pattern="[0-9]{3}[\.][0-9]{3}[\.][0-9]{3}[\-][0-9]{2}" data-inputmask="'mask': '999.999.999-99'" required>
+                <label for="eventID">ID</label>
+                <input type="text" class="form-control" id="eventID" placeholder="123abc456def..." value="" required>
                 <div class="invalid-feedback">
-                  Digite um CPF válido. É necessário que digite um CPF.
+                  Todo evento deve ter um ID válido.
                 </div>
               </div>
-              <div class="col-md-6 mb-3"> <!-- colocar mask JavaScript = umask -->
-                  <label for="birthDate">Data de Nascimento</label>
-                  <input type="date" class="form-control" id="birthDate" value="" required>
+              <div class="col-md-6 mb-3">
+                <label for="eventName">Nome do evento</label>
+                <input type="text" class="form-control" id="eventName" placeholder="Palestra sobre algo" value="" required>
+                <div class="invalid-feedback">
+                  Um nome de evento válido é necessário.
                 </div>
+              </div>
             </div>
 
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="preco">Preço</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">R$</span>
+                  </div>
+                  <input type="text" class="form-control" id="preco" placeholder="0,00">
+                </div>
+              </div>
 
-            <div class="mb-3">
-              <label for="password">Senha</label>
-              <input type="password" class="form-control" id="password" placeholder="********" maxlength="16" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
-              <div class="invalid-feedback" style="width: 100%;">
-                Sua senha é necessária. Senha pode estar inválida. A senha deve ter no máximo 16 caracteres.
-                A senha deve ter pelo menos um número, uma letra maiúscula e uma letra minúscula.
+              <div class="col-md-4 mb-3">
+                <label for="startDate">Data de início</label>
+                <input type="date" class="form-control" id="startDate" value="">
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="endDate">Data de término</label>
+                <input type="date" class="form-control" id="endDate" value="">
               </div>
             </div>
 
             <div class="mb-3">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="seunome@exemplo.com" required>
-              <div class="invalid-feedback">
-                Digite um email válido.
-              </div>
+              <label for="place">Local do evento</label>
+              <input type="text" class="form-control" id="place" placeholder="Auditório ou hotel, etc.">
             </div>
 
             <div class="mb-3">
-              <label for="nivelEscolaridade">Nível de Escolaridade</label>
-              <input type="text" class="form-control" id="nivelEscolaridade" placeholder="Seu nível de escolaridade aqui." value="" required>
-              <div class="invalid-feedback">
-                  É necessário que seja digitado um nível de escolaridade.
-              </div>
+              <label for="descEvent">Descrição do evento</label>
+              <textarea class="form-control" id="descEvent" rows="3" placeholder="Digite a descrição do evento aqui."></textarea>
             </div>
 
             <div class="mb-3">
-              <label for="interests">Interesses</label>
-              <textarea class="form-control" id="interests" rows="3" placeholder="Digite aqui interesses que possam influenciar sua escolha de eventos" required></textarea>
-              <div class="invalid-feedback">
-                  É necessário que se escreva algum interesse pelo menos.
-              </div>
+                <label for="attractions">Atrações</label>
+                <textarea class="form-control" id="attractions" rows="3" placeholder="Digite as atrações do evento aqui."></textarea>
             </div>
+
+            <div class="mb-3">
+              <label for="area">Área de pesquisa</label>
+              <input type="text" class="form-control" id="area" placeholder="Física, química, etc.">
+            </div>
+
+        
             <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Salvar alterações</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
           </form>
         </div>
       </div>
@@ -115,7 +111,7 @@
       </footer>
     </div>
 
-    <script>exibeNomeUsuario('nicolasitelzinho@gmail.com');</script>
+    <script>exibeDadosEvento('III Simposio de Fisica');</script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

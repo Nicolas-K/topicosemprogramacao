@@ -6,14 +6,12 @@ function exibeUsuarios() {
 
         error: function (call) {
             alert('Erro: ' + call.data);
-            document.getElementById('result').innerHTML += '<br>ACONTECEU 1<br>';
         },
 
         success: function (call) {
 
             if (call.status === 404 || call.status === 500) {
                 alert('Erro: ' + call.data);
-                document.getElementById('result').innerHTML += '<br>ACONTECEU 2<br>';
             }
 
             else {
@@ -91,6 +89,48 @@ function exibeUmUsuario(emailhtml) {
     });
 }
 
+function exibeNomeUsuario(emailhtml) {
+    $.ajax({
+        url: '/users/showAll',
+        type: 'GET',
+        dataType: 'json',
+
+        error: function (call) {
+            alert('Erro: ' + call.data);
+            document.getElementById('result').innerHTML += '<br>ACONTECEU 1<br>';
+        },
+
+        success: function (call) {
+
+            if (call.status === 404 || call.status === 500) {
+                alert('Erro: ' + call.data);
+                document.getElementById('result').innerHTML += '<br>ACONTECEU 2<br>';
+            }
+
+            else {
+                var i;
+                var user;
+
+                for (i = 0; i < call.length; i++) {
+                    user = call[i];
+
+                    if (emailhtml === user.email) {
+
+                        document.getElementById('fullName').value = user.name;
+                        document.getElementById('birthDate').value = user.birth;
+                        document.getElementById('password').value = user.password;
+                        document.getElementById('email').value = user.email;
+                        document.getElementById('nivelEscolaridade').value = user.education;
+                        document.getElementById('interests').value = user.interest;
+                        //                    location.reload();
+                    }
+                }
+            }
+        }
+    });
+}
+
+/*
 function deletaUsuario() {
     $.ajax({
         url: '/users/delete/',
@@ -134,7 +174,7 @@ function deletaUsuario() {
         }
     });
 }
-
+*/
 /*
 function deletaCliente(id) {
     $.ajax({
