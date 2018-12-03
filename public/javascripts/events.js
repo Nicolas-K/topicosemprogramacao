@@ -189,7 +189,6 @@ function exibeDadosEvento(namehtml) {
             else {
                     var i;
                     var event;
-                    var eventData;
         
                     for (i = 0; i < call.length; i++) {
                         event = call[i];
@@ -208,10 +207,6 @@ function exibeDadosEvento(namehtml) {
                                 //                    location.reload();
                         }
                     }
-            }
-        }
-    });
-            
             }
         }
     });
