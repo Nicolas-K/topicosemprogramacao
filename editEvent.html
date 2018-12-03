@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Editar Evento</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Importando js da API -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="javascripts/events.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="form-validation.css" rel="stylesheet">
+  </head>
+
+  <body class="bg-light">
+
+    <div class="container">
+      <div class="py-5 text-center">
+        <h2>Editar os dados do evento</h2>
+        <p class="lead">Edite os dados do evento, caso tenha ocorrido algum engano, ou para aprimorar a experiência dos participantes.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h4 class="mb-3">Informações do Evento</h4>
+          <form class="needs-validation" novalidate>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="eventID">ID</label>
+                <input type="text" class="form-control" id="eventID" placeholder="123abc456def..." value="" required>
+                <div class="invalid-feedback">
+                  Todo evento deve ter um ID válido.
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="eventName">Nome do evento</label>
+                <input type="text" class="form-control" id="eventName" placeholder="Palestra sobre algo" value="" required>
+                <div class="invalid-feedback">
+                  Um nome de evento válido é necessário.
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="preco">Preço</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">R$</span>
+                  </div>
+                  <input type="text" class="form-control" id="preco" placeholder="0,00">
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="startDate">Data de início</label>
+                <input type="date" class="form-control" id="startDate" value="">
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="endDate">Data de término</label>
+                <input type="date" class="form-control" id="endDate" value="">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="place">Local do evento</label>
+              <input type="text" class="form-control" id="place" placeholder="Auditório ou hotel, etc.">
+            </div>
+
+            <div class="mb-3">
+              <label for="descEvent">Descrição do evento</label>
+              <textarea class="form-control" id="descEvent" rows="3" placeholder="Digite a descrição do evento aqui."></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="attractions">Atrações</label>
+                <textarea class="form-control" id="attractions" rows="3" placeholder="Digite as atrações do evento aqui."></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="area">Área de pesquisa</label>
+              <input type="text" class="form-control" id="area" placeholder="Física, química, etc.">
+            </div>
+
+        
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+          </form>
+        </div>
+      </div>
+
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2018 EventsFull Inc.</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>
+    </div>
+
+    <script>exibeDadosEvento('III Simposio de Fisica');</script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>
+  </body>
+</html>
