@@ -24,6 +24,8 @@ function login(){
                 // grava usuário logado n sessão do navegador
                 window.localStorage.setItem("userId", resp._id);
                 window.localStorage.setItem("userName", resp.name);
+                window.localStorage.setItem("userEmail", resp.email);
+
                 window.location.href = '/index.html'; // direcionar para a tela da Beatriz
             }
         }
