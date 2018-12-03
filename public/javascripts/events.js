@@ -124,49 +124,6 @@ function nomeDoEventoPorID(idhtml) {
     });
 }
 
-function deletaUsuario() {
-    $.ajax({
-        url: '/events/delete/',
-        type: 'DELETE',
-        dataType: 'json',
-
-        error: function (call) {
-            alert('Erro: ' + call.data);
-            document.getElementById('result').innerHTML += '<br>ACONTECEU 1<br>';
-        },
-
-        success: function (call) {
-
-            if (call.status === 404 || call.status === 500) {
-                alert('Erro: ' + call.data);
-                document.getElementById('result').innerHTML += '<br>ACONTECEU 2<br>';
-            }
-
-            else {
-                var i;
-                var event;
-                var eventData;
-
-                for (i = 0; i < call.length; i++) {
-                    event = call[i];
-
-                    eventData = 'ID: ' + event._id +
-                        '<br>Nome: ' + event.name +
-                        '<br>Email: ' + event.email +
-                        '<br>Senha: ' + event.password +
-                        '<br>Data de Nascimento: ' + event.birth +
-                        '<br>Educação: ' + event.education +
-                        '<br>Interesse: ' + event.interest +
-                        '<br>CPF/RG: ' + event.CPF_RG +
-                        '<br>Inscrições: ' + event.subscriptions;
-
-                    document.getElementById('result').innerHTML += eventData + '<br><br>';
-                    //                    location.reload();
-                }
-            }
-        }
-    });
-}
 
 function exibeDadosEvento(namehtml) {
     $.ajax({
@@ -194,12 +151,15 @@ function exibeDadosEvento(namehtml) {
                         event = call[i];
         
                         if (namehtml === event.name) {
-        
+                            var startDate = moment(event.startDate).format('YYYY-MM-DD');
+                            $('#startDate').val(startDate);
+                            var endDate = moment(event.endDate).format('YYYY-MM-DD');
+                            $('#endDate').val(endDate);
+
+
                             document.getElementById('eventID').value = event._id;
                             document.getElementById('eventName').value = event.name;
                             document.getElementById('preco').value = event.price;
-                            document.getElementById('startDate').value = event.startDate;
-                            document.getElementById('endDate').value = event.endDate;
                             document.getElementById('place').value = event.place;
                             document.getElementById('descEvent').value = event.description;
                             document.getElementById('attractions').value = event.attractions;
@@ -211,39 +171,3 @@ function exibeDadosEvento(namehtml) {
         }
     });
 }
-
-/*
-function deletaCliente(id) {
-    $.ajax({
-        url: '/cliente/deleta?id=' + id,
-        type: 'post',
-        dataType: 'json',
-        error: function (dados) {
-            alert('Erro: ' + dados.data);
-        },
-        success: function (dados) {
-            if (dados.status === 'ERRO')
-    alert('Erro: ' + dados.data);
-            else {
-                var divResult = document.getElementById('result');
-    divResult.removeChild(document.getElementById(id));
-                alert(dados.data);
-                location.reload();
-            }
-        }
-    });
-
-    }
-
-    function exibeClientes(clientes) {
-        for (var i = 0; i < clientes.length; i++) {
-        var cliente = clientes[i];
-        var dadosCliente = 'ID: ' + cliente.id +
-        '<br>Nome: ' + cliente.nome +
-        '<br>Endereço: ' + cliente.endereco +
-        '<br>Telefone: ' + cliente.telefone +
-        '<br>Email: ' + cliente.email +
-        '<br><a href="#" onclick="deletaCliente(' + cliente.id + ');"> EXCLUIR</a>';
-        document.getElementById('result').innerHTML += dadosCliente + '<br><br>';
-        }
-    } */
