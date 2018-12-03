@@ -88,7 +88,7 @@ function exibeUmUsuario(emailhtml) {
     });
 }
 
-function exibeNomeUsuario(emailhtml) {
+function exibeDadosUsuario(emailhtml) {
     $.ajax({
         url: '/users/showAll',
         type: 'GET',
