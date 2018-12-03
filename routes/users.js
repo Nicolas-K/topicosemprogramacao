@@ -163,10 +163,6 @@ router.put('/subscribe/:_id', function(req, res){
         return res.status(404).send();
       } 
 
-      if(searchUser.subscriptions = _id){
-        return res.status(409).send();
-      }
-
       Evento.findOne({_id: _id}, function(err, searchEvent){
         if(err){
           return res.status(500).send();
@@ -187,63 +183,4 @@ router.put('/subscribe/:_id', function(req, res){
   })
 });
 
-/*
-router.put('/unsubscribe/:_id', function(req, res){
-
-  var eventSchema = mongoose.Schema({
-	  name: {type: String, unique: true, required: true},
-	  startDate: Date,  
-	  endDate: Date,
-	  place: String,
-	  description: String,
-	  attractions: String,
-	  area: String,
-	  price: Number
-	});
-
-  var _id = req.params._id;
-  var email = req.body.email;
-  var Evento = require('mongoose').model('Event');
-
-  User.findOne({email: email}, function(err, searchUser){
-    if(err){
-      return res.status(500).send();
-    }
-      if(!searchUser){
-        return res.status(404).send();
-      } 
-
-      if(searchUser.subscriptions != _id){
-        return res.status(404).send();
-      }
-
-      /* NÃO ESTÁ FUNCIONANDO. EU QUERO REMOVER DO ARRAY
-      userAccounts.update( 
-        { userId: usr.userId },
-        { $pull: { connections : { _id : connId } } },
-        { safe: true },
-        function removeConnectionsCB(err, obj) {
-            ...
-        });
-      *//*
-      Evento.findOne({_id: _id}, function(err, searchEvent){
-        if(err){
-          return res.status(500).send();
-        }
-        if(!searchEvent){
-          return res.status(404).send();
-        }
-        
-        searchUser.subscriptions.push(searchEvent._id);
-       
-        searchUser.save(function(err, savedUser){
-          if(err){
-            return res.status(500).send();
-          } 
-            return res.status(200).send();
-        })
-      })
-  })
-});
-*/
 module.exports = router;
