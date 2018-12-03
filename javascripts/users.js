@@ -89,7 +89,9 @@ function exibeUmUsuario(emailhtml) {
     });
 }
 
-function exibeNomeUsuario(emailhtml) {
+function exibeNomeUsuario() {
+    var emailhtml = localStorage.getItem("email");
+
     $.ajax({
         url: '/users/showAll',
         type: 'GET',

@@ -168,6 +168,50 @@ function deletaUsuario() {
     });
 }
 
+function exibeDadosEvento(namehtml) {
+    $.ajax({
+        url: '/events/showAll',
+        type: 'GET',
+        dataType: 'json',
+
+        error: function (call) {
+            alert('Erro: ' + call.data);
+            document.getElementById('result').innerHTML += '<br>ACONTECEU 1<br>';
+        },
+
+        success: function (call) {
+
+            if (call.status === 404 || call.status === 500) {
+                alert('Erro: ' + call.data);
+                document.getElementById('result').innerHTML += '<br>ACONTECEU 2<br>';
+            }
+
+            else {
+                    var i;
+                    var event;
+        
+                    for (i = 0; i < call.length; i++) {
+                        event = call[i];
+        
+                        if (namehtml === event.name) {
+        
+                            document.getElementById('eventID').value = event._id;
+                            document.getElementById('eventName').value = event.name;
+                            document.getElementById('preco').value = event.price;
+                            document.getElementById('startDate').value = event.startDate;
+                            document.getElementById('endDate').value = event.endDate;
+                            document.getElementById('place').value = event.place;
+                            document.getElementById('descEvent').value = event.description;
+                            document.getElementById('attractions').value = event.attractions;
+                            document.getElementById('area').value = event.area;
+                                //                    location.reload();
+                        }
+                    }
+            }
+        }
+    });
+}
+
 /*
 function deletaCliente(id) {
     $.ajax({
