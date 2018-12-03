@@ -194,12 +194,15 @@ function exibeDadosEvento(namehtml) {
                         event = call[i];
         
                         if (namehtml === event.name) {
-        
+                            var startDate = moment(event.startDate).format('YYYY-MM-DD');
+                            $('#startDate').val(startDate);
+                            var endDate = moment(event.endDate).format('YYYY-MM-DD');
+                            $('#endDate').val(endDate);
+
+
                             document.getElementById('eventID').value = event._id;
                             document.getElementById('eventName').value = event.name;
                             document.getElementById('preco').value = event.price;
-                            document.getElementById('startDate').value = event.startDate;
-                            document.getElementById('endDate').value = event.endDate;
                             document.getElementById('place').value = event.place;
                             document.getElementById('descEvent').value = event.description;
                             document.getElementById('attractions').value = event.attractions;
