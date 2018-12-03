@@ -89,6 +89,8 @@ function exibeUmUsuario(emailhtml) {
 }
 
 function exibeDadosUsuario(emailhtml) {
+	var emailhtml = localStorage.getItem("email");
+	
     $.ajax({
         url: '/users/showAll',
         type: 'GET',
