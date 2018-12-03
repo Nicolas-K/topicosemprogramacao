@@ -55,7 +55,7 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="CPF">CPF</label>
-                <input type="text" class="form-control" id="cpf" placeholder="123.456.789-00" value="" pattern="[0-9]{3}[\.][0-9]{3}[\.][0-9]{3}[\-][0-9]{2}" data-inputmask="'mask': '999.999.999-99'" required>
+                <input type="text" class="form-control cpf-mask" id="cpf" placeholder="123.456.789-00" value="" pattern="[0-9]{3}[\.][0-9]{3}[\.][0-9]{3}[\-][0-9]{2}" data-inputmask="'mask': '999.999.999-99'" required>
                 <div class="invalid-feedback">
                   Digite um CPF válido. É necessário que digite um CPF.
                 </div>
@@ -125,6 +125,10 @@
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
     <script src="../../assets/js/vendor/holder.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
+    
+
     <script>
       // Example starter JavaScript for disabling form submissions if there are invalid fields
       (function() {

@@ -1,3 +1,7 @@
+$(document).ready(function(){
+    $('.cpf-mask').mask('000.000.000-00', {reverse: true});
+});
+
 function exibeUsuarios() {
     $.ajax({
         url: '/users/showAll',
@@ -9,12 +13,9 @@ function exibeUsuarios() {
         },
 
         success: function (call) {
-
             if (call.status === 404 || call.status === 500) {
                 alert('Erro: ' + call.data);
-            }
-
-            else {
+            } else {
                 var i;
                 var user;
                 var userData;
@@ -53,7 +54,6 @@ function exibeUmUsuario(emailhtml) {
         },
 
         success: function (call) {
-
             if (call.status === 404 || call.status === 500) {
                 alert('Erro: ' + call.data);
                 document.getElementById('result').innerHTML += '<br>ACONTECEU 2<br>';
@@ -68,7 +68,6 @@ function exibeUmUsuario(emailhtml) {
                     user = call[i];
 
                     if (emailhtml === user.email) {
-
                         userData = 'ID: ' + user._id +
                             '<br>Nome: ' + user.name +
                             '<br>Email: ' + user.email +
@@ -100,14 +99,11 @@ function exibeNomeUsuario(emailhtml) {
             document.getElementById('result').innerHTML += '<br>ACONTECEU 1<br>';
         },
 
-        success: function (call) {
-
+        success: function (call) {    
             if (call.status === 404 || call.status === 500) {
                 alert('Erro: ' + call.data);
                 document.getElementById('result').innerHTML += '<br>ACONTECEU 2<br>';
-            }
-
-            else {
+            } else {
                 var i;
                 var user;
 
@@ -115,9 +111,10 @@ function exibeNomeUsuario(emailhtml) {
                     user = call[i];
 
                     if (emailhtml === user.email) {
+                        var birthDate = moment(user.birth).format('YYYY-MM-DD');
+                        $('#birthDate').val(birthDate);
 
                         document.getElementById('fullName').value = user.name;
-                        document.getElementById('birthDate').value = user.birth;
                         document.getElementById('password').value = user.password;
                         document.getElementById('email').value = user.email;
                         document.getElementById('nivelEscolaridade').value = user.education;
@@ -125,6 +122,35 @@ function exibeNomeUsuario(emailhtml) {
                         //                    location.reload();
                     }
                 }
+            }
+        }
+    });
+}
+
+function inscreveUsuarios(idEvento, emailUsuario) {
+    var input = {
+                'email': emailUsuario
+                };
+
+        document.getElementById('result').innerHTML += input;
+
+    $.ajax({
+        url: '/users/subscribe/' + idEvento,
+        type: 'PUT',
+        dataType: 'json',
+        data: input,
+        error: function (call) {
+            alert('Erro: ' + call.data);
+        },
+
+        success: function (call) {
+
+            if (call.status === 404 || call.status === 500 || call.status === 409) {
+                alert('Erro: ' + call.data);
+            }
+
+            else {
+                alert('DEU CERTO CARAI AOSUDASUD');
             }
         }
     });
