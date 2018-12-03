@@ -22,10 +22,8 @@ function login(){
             
             else {
                 // grava usuário logado n sessão do navegador
-                window.localStorage.setItem("userId", resp._id);
-                window.localStorage.setItem("userName", resp.name);
-                window.localStorage.setItem("userEmail", resp.email);
-
+                window.localStorage.setItem("email", resp.email);
+                window.localStorage.setItem("name", resp.name);
                 window.location.href = '/index.html'; // direcionar para a tela da Beatriz
             }
         }
