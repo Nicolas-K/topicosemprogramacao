@@ -89,8 +89,39 @@ body {
   }
 }
 
+.featurette-image{
+  min-height: 100%;
+}
+
 @media (min-width: 62em) {
   .featurette-heading {
     margin-top: 7rem;
   }
+}
+
+#image1{
+  background: url("../assets/img/eventos1.png");
+  background-size: cover; /* ajusta a imagem automaticamente sem distorcer*/
+  background-position: center;
+  height: 140px;
+  width: 140px;
+  margin: 0 auto;
+}
+
+#image2{
+  background: url("../assets/img/eventos2.png");
+  background-size: cover; /* ajusta a imagem automaticamente sem distorcer*/
+  background-position: center;
+  height: 140px;
+  width: 140px;
+  margin: 0 auto;
+}
+
+#image3{
+  background: url("../assets/img/eventos4.png");
+  background-size: cover; /* ajusta a imagem automaticamente sem distorcer*/
+  background-position: center;
+  height: 140px;
+  width: 140px;
+  margin: 0 auto;
 }
