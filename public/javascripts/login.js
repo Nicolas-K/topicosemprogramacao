@@ -14,6 +14,7 @@ function login(){
         data: input,
         error: function(err){
             console.log(err);
+            alert("Desculpe, não conseguimos encontrar o usuário informado, tente novamente!")
         },
         success: function (resp){
             if (resp.status === "ERRO")
@@ -23,8 +24,7 @@ function login(){
                 // grava usuário logado n sessão do navegador
                 window.localStorage.setItem("userId", resp._id);
                 window.localStorage.setItem("userName", resp.name);
-
-                window.location.href = '/index.html';
+                window.location.href = '/index.html'; // direcionar para a tela da Beatriz
             }
         }
      
